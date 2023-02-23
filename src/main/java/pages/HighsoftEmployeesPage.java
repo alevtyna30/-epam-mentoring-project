@@ -4,24 +4,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HighsoftEmployeesPage extends BasePage {
 
-    @FindBy(xpath = "//*[@class='highcharts-label highcharts-tooltip highcharts-color-2']")
-    private WebElement secondTooltipOnHighchartsArea;
+    @FindBy(css = ".highcharts-point.highcharts-color-2")
+    private List<WebElement> highchartsArea;
 
-    @FindBy(xpath = "//*[@fill='#90ed7d'][3]")
-    private WebElement secondPeakOnHighchartsArea;
+    @FindBy(xpath = "//*[@class='highcharts-label highcharts-tooltip highcharts-color-2']")
+    private WebElement tooltipMessage;
 
     public HighsoftEmployeesPage(WebDriver driver) {
         super(driver);
+
     }
-    public WebElement getSecondPeakOnHighchartsArea(){
-        return secondPeakOnHighchartsArea;
+
+    public List<WebElement> getAllPeaksFromHighchartsArea() {
+        return highchartsArea;
     }
-    public String getActualTooltipText() {
-        return secondTooltipOnHighchartsArea.getText();
+
+    public String getTextFromToolTip() {
+        return tooltipMessage.getText();
     }
-    public WebElement getSecondTooltipOnHighchartsArea(){
-        return secondTooltipOnHighchartsArea;
+
+    public WebElement getTooltipMessage() {
+        return tooltipMessage;
     }
+
 }

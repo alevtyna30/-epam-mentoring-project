@@ -22,6 +22,12 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//button[@aria-label='Show Revenue']")
     private WebElement revenueChart;
 
+    @FindBy(xpath = "//*[@aria-label='View chart menu, Highcharts and Highsoft timeline']")
+    private WebElement chartMenu;
+
+    @FindBy(xpath = "//li[text()='View in full screen']")
+    private WebElement fullScreenButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -34,6 +40,7 @@ public class HomePage extends BasePage{
     public WebElement getHighsoftEmployeesChart(){
         return highsoftEmployeesChart;
     }
+
     public WebElement getGoogleSearchChart(){
         return googleSearchChart;
     }
@@ -52,5 +59,10 @@ public class HomePage extends BasePage{
     public void clickOnRevenueChart(){
         revenueChart.click();
     }
-
+    public void clickOnChartMenu(){
+        chartMenu.click();
+    }
+    public void clickOnFullScreenButton(){
+        fullScreenButton.click();
+    }
 }

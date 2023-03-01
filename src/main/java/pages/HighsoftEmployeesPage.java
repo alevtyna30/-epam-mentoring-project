@@ -3,8 +3,9 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class HighsoftEmployeesPage extends BasePage {
 
@@ -14,21 +15,22 @@ public class HighsoftEmployeesPage extends BasePage {
     @FindBy(xpath = "//*[@class='highcharts-label highcharts-tooltip highcharts-color-2']")
     private WebElement tooltipMessage;
 
+    private List<String> tooltipMessages;
+
     public HighsoftEmployeesPage(WebDriver driver) {
         super(driver);
-
     }
 
-    public List<WebElement> getAllPeaksFromHighchartsArea() {
-        return highchartsArea;
+    public void hoverOverHighchartAreaAndCollectText() {
+        tooltipMessages = new ArrayList<>();
+        for (int i = 0; i < highchartsArea.size(); i++) {
+            hoverOverElement(highchartsArea.get(i));
+            waitVisibilityOfElement(highchartsArea.get(i));
+            tooltipMessages.add(tooltipMessage.getText());
+        }
     }
 
-    public String getTextFromToolTip() {
-        return tooltipMessage.getText();
+    public List<String> getTooltipMessages() {
+        return tooltipMessages;
     }
-
-    public WebElement getTooltipMessage() {
-        return tooltipMessage;
-    }
-
 }
